@@ -1,0 +1,65 @@
+<div class="container-fluid">
+  <div *ngIf="restaurantsData" class="row">
+    <!-- <div *ngFor="let res of restaurantsData" class="col-sm-6 col-md-3 col-lg-3"> -->
+    <div *ngFor="let res of restaurantsData">
+      <div class="restaurant-card">
+        <article>
+          <div class="pos-relative clearfix">
+            <div class="row">
+              <div class="col-md-3 image">
+                <img src="{{res.restaurant.featured_image}}" class="img-responsive" alt="Loading..." [style.height]="80+'px'">
+
+              </div>
+              <div class="col-md-7">
+                <h4>
+                  <div class="restaurant-name">
+                    {{res.restaurant.name}}
+                  </div>
+                  <a data-toggle="tooltip" title="view location" target="_blank" href="https://www.google.co.in/maps/search/{{res.restaurant.location.latitude}}+{{res.restaurant.location.longitude}}?sa=X&ved=0ahUKEwiHmrawtKfVAhWIfrwKHfO8DNUQ8gEIIDAA">
+                    <span class="glyphicon glyphicon-map-marker"></span>
+                  </a>
+                </h4>
+                <p class="restaurant-COT">
+                  Cost for two: {{res.restaurant.average_cost_for_two}}
+                </p>
+              </div>
+            </div>
+            <!--end of row-->
+            <br>
+
+            <div class="row col-md-12">
+              <div class="row">
+                <div class="col-md-3">
+                  <span class="title">CUISINES:</span>
+                </div>
+                <div class="col-md-9">
+                  {{res.restaurant.cuisines}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <span class="title">LOCATION:</span>
+                </div>
+                <div class="col-md-9 restaurant-address"> {{res.restaurant.location.address}}
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-3">
+                  <span class="title">RATINGS:</span>
+                </div>
+                <div class="col-md-9"> {{res.restaurant.user_rating.aggregate_rating}}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <button class="favourite btn btn-block {{res.buttonValue ? 'btn-info disabled' : 'btn-primary'}}" (click)="addRestaurant(res,i)" role="button">
+              {{res.buttonValue || 'Add to Favourites'}}
+            </button>
+          </div>
+        </article>
+      </div>
+      <!--end of card-->
+    </div>
+  </div>
+</div>
